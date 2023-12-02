@@ -74,7 +74,8 @@
 				});*/
 				
 				$("#loginForm").submit(function(e) {
-					var buttonId = e.originalEvent.explicitOriginalTarget.id;					
+					//var buttonId = e.originalEvent.explicitOriginalTarget.id;					
+					var buttonId = $("#login_btn").val();
 					var name_input = $("#name_input").val();					
 					var passwd_input = $("#passwd_input").val();
 					
