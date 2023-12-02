@@ -1,0 +1,148 @@
+<!--
+	S.I. Training: jQuery Assignment - Conversion of Ajax Timeclock Name Autocomplete
+	Name: Kath Borja
+	Date Submitted: August 16, 2014
+-->
+
+<html>
+	<head>
+		<title>Ajax Assignment - Timeclock Name Autocomplete</title>
+		
+		<script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+		<script type="text/javascript">
+		
+			//Load autocomplete from external file/page
+				$(document).ready(function(){
+				  $("#name_input").keyup(function(){
+					var name_input = $("#name_input").val();
+										
+					//alert(name_input);
+					
+					$("#container").load("name_autocomplete.php?str="+name_input,function(responseTxt,statusTxt,xhr){
+						/*if(statusTxt=="success")
+						  alert("External content loaded successfully!");
+						if(statusTxt=="error")
+						  alert("Error: "+xhr.status+": "+xhr.statusText);*/
+						  
+						 // alert(name_input);
+						  $('#container').css({"visibility":"visible","height":"0px","width":"200px"});
+					  });
+				  });
+				});
+			
+			//Set value for name input text box
+			function setvalue (thevalue){			
+				$('#container').css({"visibility":"hidden","height":"0px","width":"0px"});
+				$('#name_input').val(thevalue);
+
+			}
+			
+			//Check status for login btn, name and password inputs
+			//If status is true, submit form; else, prevent submitting the form and remain on login page
+			/*$(document).ready(function() {
+				$("#loginForm").submit(function(e) {
+					var buttonId = e.originalEvent.explicitOriginalTarget.id;
+					var name_input = $("#name_input").val();
+					var passwd_input = $("#passwd_input").val();
+					
+					if (buttonId  == "login_btn" && name_input != '' && passwd_input == 'letmein') 
+					{
+						//return true;
+						
+						$("#welcomemsg").load("welcome.php?name_input="+name_input,
+							function(responseTxt,statusTxt,xhr){
+						});
+					}else{
+						e.preventDefault();
+						return false;
+					}
+				});
+			});*/
+			
+			$(document).ready(function(){
+				/*$("login_btn").onclick(function(){
+					var name_input = $("#name_input").val();
+					var passwd_input = $("#passwd_input").val();
+					
+					alert("hi");
+					$.ajax(function(){
+						type: "post",
+						url: "welcome.php",
+						data: "name_input="+name_input+"&passwd_input="+passwd_input
+						success: 
+					});
+				});*/
+				
+				$("#loginForm").submit(function(e) {
+					var buttonId = e.originalEvent.explicitOriginalTarget.id;					
+					var name_input = $("#name_input").val();					
+					var passwd_input = $("#passwd_input").val();
+					
+					if (buttonId  == "Login" && name_input != '' && passwd_input == 'letmein') 
+					{
+						//return true;
+						//alert("done");
+						
+						/*$.ajax({
+							url : "welcome.php",
+							type: "POST",
+							data : "name_input="+name_input",
+							success: function(name_input)
+							{
+								//data - response from server
+								alert("here");
+							},
+							error: function (jqXHR, textStatus, errorThrown)
+							{
+						 
+							}
+						});*/
+						
+						e.preventDefault();
+						$.ajax({
+							type: "post",
+							url: "welcome.php",
+							data: "name_input="+name_input+"&passwd_input="+passwd_input,
+							success: function(str){
+								$("#welcomemsg").html(str);
+							}
+						});
+					
+						
+						//$("#welcomemsg").load("welcome.php?name_input="+name_input,
+						//	function(responseTxt,statusTxt,xhr){
+						//});
+					}else{
+						e.preventDefault();
+						return false;
+					}
+				});
+			});
+			
+			/*function form_submit(form_id,filename){
+				$.post("welcome.php",$("#loginForm").serialize(), function(data){
+					alert("here"+data);
+				});
+			}*/	
+			
+		</script>
+	</head>
+	
+	<body style="font-size: 12pt; font-family: Trebuchet MS">
+		<div style="font-size: 12pt; border-radius: 5px; background-color: #F0F0F0; width: 20%; height: 15%; padding: 15px 2px 10px 5px">
+			<form id="loginForm">
+				<b>Name: </b>
+				<input id="name_input" name="name_input" type="text" size="30px" placeholder="Enter name to search..." autocomplete="off">
+				<div id="container" style="display: block; position:absolute; z-index:1; padding-left: 54px; width: 200px"></div><div style="margin-top: 5px"></div>
+				
+				<b>Password:</b> <input id="passwd_input" type="password" size="25px" placeholder="Enter password..." style="padding-left:5px">
+				<div align="center" style="margin-top: 15px"><input id="login_btn" type="submit" style="width:160px" value="Login" /></div>
+			</form>
+		</div>
+		<div id="welcomemsg" ></div>
+		
+		<!--div style="margin-top: 50px"></div>
+		<br><b>Results:</b>
+		<hr width="20%" align="left" style="border: 2px; border-style: solid;font-size: 12pt; border-radius: 5px;"-->
+	</body>
+</html>
