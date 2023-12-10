@@ -1,4 +1,6 @@
 # timeclock-namesearch
-Simple timeclock name autocomplete search
-=======
+
+Simple form for timeclock name autocomplete search using HTML, PHP, and jQuery ajax() method.
+
+#
 
