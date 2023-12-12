@@ -18,7 +18,7 @@
   
 - main.html (for input text and ajax)
 - name_autocomplete.php (for employee names list and string check functionality)
-- welcome.php (simple welcome message that shows after clicking "Login" button and passed successful authentication)
+- welcome.php (simple welcome message that shows after successful authentication)
 </details>
 
 <details>
