@@ -10,7 +10,7 @@
 - Simple welcome message
 
 ## Tech Stack
-- HTML, PHP, jQuery
+- HTML, CSS, PHP, JavaScript, jQuery
   
 <hr>
 <details>
